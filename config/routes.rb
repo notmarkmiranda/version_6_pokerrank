@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'pages#home'
+  resources :users, only: [:index, :show, :create, :update], path_names: { show: 'dashboard' }
+
+  get '/sign-up', to: 'users#new', as: 'sign_up'
+  get '/dashboard', to: 'users#show', as: 'dashboard'
+  get 'edit-profile', to: 'users#edit', as: 'edit_profile'
 end

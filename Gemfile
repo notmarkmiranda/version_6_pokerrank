@@ -32,8 +32,10 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
