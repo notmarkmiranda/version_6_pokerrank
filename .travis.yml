@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+- 2.4.0
+env:
+  matrix:
+  - DB=postgresql
+script:
+- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+- bundle exec rspec
+before_script:
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+bundler_args: "--binstubs=./bundler_stubs"
+deploy:
+  provider: heroku
+  api_key:
+    secure: pL+JI9xUPNQWqpdrRnbdNTAvUm7A4CspLXUimzazhayUkxLZyaPEU0GdUDcXZcVhCGDMmvGJOSvMZ2+Vza44eA2yjL7NM07IAiCWsr5fQ7VVj8/7Km4yGZoF+pFHuw7NkpnlsFteYG9HZ2HNaPCYbZO883XuUR3nsF5K5rvD+2EnzhGivwqpCPMMK8GmLM+IJufvcENitvQ2oSw3oWWXNbWkOycwoGnk3nc8skgJugdmLs89Ygh3lgdIJjj+u4jNl5UpszOfzYibDkvzgMJ2mzmPvKhVp8C02QyqjPBL7KewrDlxRLXj5s7JmWMf7QttmG4peaIBs1GFrE4eUrw2bVrxfKugI71+/IlfLisnv3CtfJ5xj7JBrinpkh1hO8mrq02bK48d8a0yxFkZnbqbv+e57vDIaXK6OsW8Xxz/ykQCqIGKpb2ehPdWKmfpVe109NSg8bJqPqBNhqjFKTE12zjUDweRe5ZIdQC8mRdYJj772xmB87qbB7gPn//XEP+f3jSutrueExn2f4Tq/+VuxnGai+ANPxceFHno02u5WjYa9RbpQQLBaDiC9gzQKvJ/F1HfqHBdqJQpksHF1+N0vaSdguVHfgiWvcZ4EeT5q2TBzPPQNd21emsKvTOFqXtJDYic55Qs8IPwqehkwxX+olzpZv58rVlTZLJnEptW1xw=
+  app: poker-tournament-manager
+  on:
+    repo: notmarkmiranda/version_6_pokerrank
