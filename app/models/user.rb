@@ -1,8 +1,18 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :email, presence: true, uniqueness: true
-  validates :first_name, presence: true
+  validates :email, uniqueness: true
+  validates :first_name, presence: true, uniqueness: { scope: :last_name }
   validates :last_name, presence: true
 
-  has_many :leagues
+  has_many :created_leagues, class_name: 'League', foreign_key: 'user_id'
+  has_many :user_league_roles
+  has_many :leagues, through: :user_league_roles
+
+  def admin_leagues
+    leagues.merge(UserLeagueRole.admins)
+  end
+
+  def member_leagues
+    leagues.merge(UserLeagueRole.members)
+  end
 end

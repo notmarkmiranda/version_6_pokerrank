@@ -6,11 +6,11 @@ class LeaguesController < ApplicationController
   end
 
   def new
-    @league = current_user.leagues.new
+    @league = current_user.created_leagues.new
   end
 
   def create
-    @league = current_user.leagues.new(league_params)
+    @league = current_user.created_leagues.new(league_params)
     if @league.save
       redirect_to league_path(@league)
     else
