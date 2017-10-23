@@ -5,7 +5,26 @@ class League < ApplicationRecord
 
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :user_league_roles
+  has_many :users, through: :user_league_roles
+
   before_validation :set_slug
+  after_create :create_admin_league_role
+
+  def admins
+    users.merge(UserLeagueRole.admins)
+  end
+
+  def grant_membership(user)
+    add_person(user, 0)
+  end
+
+  def grant_admin(user)
+    add_person(user, 1)
+  end
+
+  def members
+    users.merge(UserLeagueRole.members)
+  end
 
   def self.find(slug)
     find_by_slug(slug)
@@ -16,6 +35,25 @@ class League < ApplicationRecord
   end
 
   private
+
+  def add_person(user, role_type)
+    return if already_part_of_league_in_role?(user, role_type)
+    roles = user_league_roles.where(user_id: user.id)
+    roles.destroy_all
+    roles.create!(user_id: user.id, role: role_type)
+  end
+
+  def already_part_of_league_in_role?(user, role_type)
+    if role_type.zero?
+      members.include?(user)
+    else
+      admins.include?(user)
+    end
+  end
+
+  def create_admin_league_role
+    user_league_roles.create!(role: 1, user_id: creator.id)
+  end
 
   def find_by_slug(slug)
     find_by(slug: slug)

@@ -5,4 +5,7 @@ class UserLeagueRole < ApplicationRecord
 
   belongs_to :user
   belongs_to :league
+
+  scope :members, -> { where(role: '0') }
+  scope :admins, -> { where(role: '1') }
 end
