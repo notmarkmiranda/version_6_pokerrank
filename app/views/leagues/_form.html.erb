@@ -1,6 +1,20 @@
-<%= form_for @league do |f| %>
-  <%= f.label :name, 'League Name' %>
-  <%= f.text_field :name %>
-
-  <%= f.submit button_text %>
-<% end %>
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mx-auto">
+      <div class="card">
+        <h3 class="card-header text-center mb-4">New League</h3>
+        <div class="card-body">
+          <fieldset>
+            <%= form_for @league do |f| %>
+              <div class="form-group">
+                <%= f.label :name, 'League Name' %>
+                <%= f.text_field :name, class: 'form-control input-lg' %>
+              </div>
+              <%= f.submit button_text, class: 'btn btn-lg btn-outline-primary btn-block' %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
