@@ -1,0 +1,46 @@
+$PRIMARY-GOLD: #B8860B;
+$PRIMARY-GRAY: #363636;
+$SECONDARY-BLUE: #517289;
+
+// generic - start
+html, body {
+  font-family: 'Raleway', sans-serif;
+}
+// generic - end
+
+
+// navbar - start
+nav ul.navbar-nav li.nav-item a.nav-link {
+  color: $PRIMARY-GOLD;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  &:hover {
+    color: $PRIMARY-GRAY;
+  }
+}
+
+nav a.navbar-brand {
+  font-size: 16px;
+  color: $PRIMARY-GRAY;
+  & > span {
+    color: $PRIMARY-GOLD;
+    font-weight: bold;
+  }
+}
+
+a.button-collapse i.material-icons {
+  color: $SECONDARY-BLUE;
+}
+// navbar - end
+
+// sign up form - start
+.input-field input[type=text]:focus + label {
+  color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+// sign up form - end
