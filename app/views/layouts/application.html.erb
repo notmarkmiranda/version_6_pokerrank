@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Version6Pokerrank</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'shared/navbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
+  <script>
+    $(document).ready(function() {
+    });
+  </script>
 </html>
