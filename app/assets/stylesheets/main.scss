@@ -3,8 +3,8 @@ $PRIMARY-GRAY: #363636;
 $SECONDARY-BLUE: #517289;
 
 // generic - start
-html, body {
-  font-family: 'Raleway', sans-serif;
+body {
+  font-family: 'Raleway', sans-serif !important;
 }
 // generic - end
 
@@ -44,3 +44,22 @@ a.button-collapse i.material-icons {
   box-shadow: 0 1px 0 0 #000;
 }
 // sign up form - end
+
+// league-show - start
+.card-header.stat-title {
+  color: $SECONDARY-BLUE;
+}
+
+.season_leader_name {
+  text-transform: uppercase;
+}
+
+.text-muted {
+  font-size: 12px;
+  text-transform: uppercase;
+  & > a.league__footer-links {
+    color: $SECONDARY-BLUE;
+    letter-spacing: 1px;
+  }
+}
+// league-show - end
