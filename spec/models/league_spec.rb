@@ -16,11 +16,17 @@ describe League, type: :model do
   context 'relationships' do
     it { should belong_to :creator }
     it { should have_many :user_league_roles }
+    it { should have_many :seasons }
   end
 
   context 'methods' do
     before do
       @league = create(:league, name: 'marks league')
+    end
+
+    context '#active_season' do
+      it 'returns the active season'
+      it 'returns nil for no active season'
     end
 
     context '#admins' do
