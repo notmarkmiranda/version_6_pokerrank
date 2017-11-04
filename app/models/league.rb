@@ -6,9 +6,15 @@ class League < ApplicationRecord
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   has_many :user_league_roles
   has_many :users, through: :user_league_roles
+  has_many :seasons
 
   before_validation :set_slug
   after_create :create_admin_league_role
+  after_create :create_initial_season
+
+  def active_season
+    # seasons.where(active: true).first
+  end
 
   def admins
     users.merge(UserLeagueRole.admins)
@@ -53,6 +59,10 @@ class League < ApplicationRecord
 
   def create_admin_league_role
     user_league_roles.create!(role: 1, user_id: creator.id)
+  end
+
+  def create_initial_season
+    seasons.create(active: true)
   end
 
   def find_by_slug(slug)

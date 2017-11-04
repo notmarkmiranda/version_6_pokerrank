@@ -3,6 +3,7 @@ class LeaguesController < ApplicationController
   before_action :require_user, except: [:show]
 
   def show
+    @active_season = @league.active_season
   end
 
   def new
