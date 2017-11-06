@@ -63,3 +63,39 @@ a.button-collapse i.material-icons {
   }
 }
 // league-show - end
+
+// splash - start
+.background-image {
+  height: 1000px;
+  background-image: asset-data-url('poker_splash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  top: 0;
+  text-align: left;
+  z-index: -100;
+}
+
+.banner-text {
+  padding-top: 325px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 2em;
+  font-weight: 800;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  color: #fff;
+  line-height: 50px;
+}
+
+.banner-text > span > a {
+  font-family: "Alex Brush", cursive;
+  text-transform: none;
+  font-size: 2.5em;
+  color: $PRIMARY-GOLD;
+  text-shadow: 2px 2px 3px rgba(0,0,0,1);
+  &:hover {
+    text-decoration: none;
+  }
+}
+// splash - end
