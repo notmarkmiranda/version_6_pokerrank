@@ -1,0 +1,12 @@
+<%= form_for [@league, @season, @game] do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%= f.label :buy_in, 'Buy In' %>
+  <%= f.text_field :buy_in %>
+
+  <%= f.label :attendees %>
+  <%= f.text_field :attendees %>
+
+  <%= f.submit 'Schedule!' %>
+<% end %>

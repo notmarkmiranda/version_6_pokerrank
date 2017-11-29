@@ -25,8 +25,23 @@ describe League, type: :model do
     end
 
     context '#active_season' do
-      it 'returns the active season'
-      it 'returns nil for no active season'
+      it 'returns the active season when only one season exists' do
+        expect(@league.active_season).to eq(@league.seasons.first)
+      end
+
+      it 'returns the active season when there are multiple seasons' do
+        last_season = @league.seasons.first
+        season = @league.seasons.create!(active: true)
+
+        expect(@league.active_season).to eq(season)
+        expect(@league.active_season).to_not eq(last_season)
+      end
+
+      it 'returns nil for no active season' do
+        @league.seasons.first.update(active: false)
+
+        expect(@league.active_season).to be nil
+      end
     end
 
     context '#admins' do
