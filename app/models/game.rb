@@ -6,4 +6,20 @@ class Game < ApplicationRecord
 
   belongs_to :season
   delegate :league, to: :season
+
+  def complete!
+    update(completed: true)
+  end
+
+  def full_date
+    date.strftime('%B %-e, %Y')
+  end
+
+  def incomplete?
+    !completed?
+  end
+
+  def uncomplete!
+    update(completed: false)
+  end
 end

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update], path_names: { show: 'dashboard' }
   resources :leagues, except: [:delete], param: :slug do
     resources :seasons, only: [:show, :create] do
-      resources :games, only: [:index, :show, :new, :create, :edit, :update]
+      resources :games, only: [:index, :show, :new, :create, :edit, :update] do
+        resource :completed, only: [:update]
+        resource :uncompleted, only: [:update]
+      end
     end
   end
 

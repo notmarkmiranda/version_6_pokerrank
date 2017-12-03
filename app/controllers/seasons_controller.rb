@@ -1,4 +1,6 @@
 class SeasonsController < ApplicationController
+  before_action :verify_admin_for_league
+
   def show
     @league = league
     @season = Season.find(params[:id])

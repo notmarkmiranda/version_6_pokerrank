@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_action :load_league_and_season, only: [:show, :new, :edit, :update]
   before_action :load_game, only: [:show, :edit, :update]
   before_action :verify_admin_for_league, only: [:new, :create, :edit, :update]
+  before_action :redirect_if_game_completed, only: [:edit, :update]
 
   def show
   end
@@ -32,20 +33,16 @@ class GamesController < ApplicationController
 
   private
 
-  def verify_admin_for_league
-    redirect_to root_path unless league.admins.include?(current_user)
-  end
-
   def game
     @game = Game.find(params[:id])
   end
 
-  def game_params
-    params.require(:game).permit(:date, :buy_in, :attendees)
+  def redirect_if_game_completed
+    redirect_to league_season_game_path(league, season, game) if game.completed?
   end
 
-  def league
-    @league ||= League.find(params[:league_slug])
+  def game_params
+    params.require(:game).permit(:date, :buy_in, :attendees)
   end
 
   def load_game
