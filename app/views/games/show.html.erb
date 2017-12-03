@@ -1,0 +1,2 @@
+<%= @game.full_date %>
+<%= link_to_if @game.incomplete?, "Edit Game", edit_league_season_game_path(@league, @season, @game) %>

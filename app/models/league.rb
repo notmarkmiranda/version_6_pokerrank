@@ -13,7 +13,7 @@ class League < ApplicationRecord
   after_create :create_initial_season
 
   def active_season
-    # seasons.where(active: true).first
+    seasons.where(active: true).first
   end
 
   def admins
