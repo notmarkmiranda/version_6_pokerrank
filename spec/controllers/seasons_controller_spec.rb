@@ -2,7 +2,14 @@ require 'rails_helper'
 
 describe SeasonsController, type: :controller do
   context 'GET#show' do
+    let(:season) { create(:season) }
+    let(:league) { season.league }
 
+    it 'renders the show template' do
+      get :show, params: { league_slug: league.slug, id: season.id }
+
+      expect(response).to render_template :show
+    end
   end
 
   context 'POST#create' do

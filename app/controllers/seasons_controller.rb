@@ -1,5 +1,5 @@
 class SeasonsController < ApplicationController
-  before_action :verify_admin_for_league
+  before_action :verify_admin_for_league, only: [:create]
 
   def show
     @league = league
