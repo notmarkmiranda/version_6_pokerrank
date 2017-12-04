@@ -5,10 +5,15 @@ class Game < ApplicationRecord
   validates :attendees, presence: true
 
   belongs_to :season
+  has_many :players
   delegate :league, to: :season
 
   def complete!
     update(completed: true)
+  end
+
+  def finished_players
+    players.where.not(finishing_place: nil)
   end
 
   def full_date

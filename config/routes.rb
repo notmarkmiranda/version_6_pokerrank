@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :games, only: [:index, :show, :new, :create, :edit, :update] do
         resource :completed, only: [:update]
         resource :uncompleted, only: [:update]
+
+        resources :players, except: [:destroy]
       end
     end
   end

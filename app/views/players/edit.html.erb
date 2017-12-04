@@ -1,0 +1,6 @@
+<%= form_for [@league, @season, @game, @player] do |f| %>
+  <%= f.label :finishing_place, "Finishing Place" %>
+  <%= f.text_field :finishing_place %>
+
+  <%= f.submit "Update Player!" %>
+<% end %>
