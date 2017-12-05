@@ -43,5 +43,4 @@ module LeagueHelper
   def season_param
     controller_name == 'seasons' ? params[:id] : params[:season_id]
   end
-
 end

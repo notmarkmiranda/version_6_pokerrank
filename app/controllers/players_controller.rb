@@ -20,10 +20,9 @@ class PlayersController < ApplicationController
   end
 
   def update
-    if @player.update(player_params)
-      redirect_to new_league_season_game_player_path(league, season, game)
-    else
-    end
+    @player.update(player_params)
+    flash[:alert] =  @player.errors.full_messages if @player.errors
+    redirect_to new_league_season_game_player_path(league, season, game)
   end
 
   private
