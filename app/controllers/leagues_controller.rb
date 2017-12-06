@@ -1,5 +1,7 @@
 class LeaguesController < ApplicationController
-  before_action :load_and_verify_league, only: [:show, :edit, :update]
+  include LeagueHelper
+
+  before_action :load_league, only: [:show, :edit, :update]
   before_action :require_user, except: [:show]
 
   def show
@@ -34,10 +36,5 @@ class LeaguesController < ApplicationController
 
   def league_params
     params.require(:league).permit(:name)
-  end
-
-  def load_and_verify_league
-    @league = League.find(params[:slug])
-    redirect_to root_path if @league.nil?
   end
 end

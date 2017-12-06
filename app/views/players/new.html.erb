@@ -1,0 +1,16 @@
+<%= form_for [@league, @season, @game, @player] do |f| %>
+  <%= f.label :user_id, "Player Name" %>
+  <%= f.select :user_id, @league.all_possible_players.collect { |u| [u.full_name, u.id] }, { include_blank: true } %>
+  <%= f.label :additional_expense, "Additional Expense" %>
+  <%= f.text_field :additional_expense %>
+  <%= f.label :finishing_place, 'Finishing Place' %>
+  <%= f.text_field :finishing_place %>
+
+  <%= f.submit "Score!" %>
+<% end %>
+
+<% @game.finished_players.each do |player| %>
+  <%= "Place: #{player.finishing_place}" %>
+  <%= player.full_name %>
+  <%= link_to "Edit #{player.full_name}", edit_league_season_game_player_path(@league, @season, @game, player) %>
+<% end %>

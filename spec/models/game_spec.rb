@@ -10,6 +10,7 @@ describe Game, type: :model do
 
   context 'relationships' do
     it { should belong_to :season }
+    it { should have_many :players }
     it 'should have a league' do
       league = create(:league)
       game = create(:game, season: league.seasons.first)
@@ -41,6 +42,17 @@ describe Game, type: :model do
       it '#uncomplete! for a completed game' do
         game2.uncomplete!
         expect(game2.reload.completed).to be false
+      end
+    end
+
+    context '#finished_players' do
+      let(:player) { create(:player) }
+      let(:game) { player.game }
+      let!(:other_player) { create(:player, game: game, finishing_place: nil) }
+
+      it 'returns players that are finished' do
+        expect(game.finished_players).to include(player)
+        expect(game.finished_players).to_not include(other_player)
       end
     end
 
