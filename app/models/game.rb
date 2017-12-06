@@ -8,6 +8,10 @@ class Game < ApplicationRecord
   has_many :players
   delegate :league, to: :season
 
+  def all_possible_players
+    league.users.where.not(id: Player.select(:user_id).where(game_id: id))
+  end
+
   def complete!
     update(completed: true)
   end
