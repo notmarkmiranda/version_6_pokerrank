@@ -20,8 +20,20 @@ describe Game, type: :model do
   end
 
   context 'methods' do
+    let(:game1) { create(:game, completed: false) }
+
+    context '#all_possible_players' do
+      let(:admin) { game1.league.creator }
+      let(:other_game) { create(:game) }
+      let(:other_admin) { other_game.league.creator }
+
+      it 'returns the list of possible, unfinished players' do
+        expect(game1.all_possible_players).to include(admin)
+        expect(game1.all_possible_players).to_not include(other_admin)
+      end
+    end
+
     context '#complete! & #uncomplete!' do
-      let(:game1) { create(:game, completed: false) }
       let(:game2) { create(:game, completed: true) }
 
       it '#complete! for an incomplete game' do

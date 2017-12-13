@@ -9,6 +9,8 @@
   <%= f.submit "Score!" %>
 <% end %>
 
+<%= button_to "Complete Game", league_season_game_completed_path(@league, @season, @game), method: 'patch' %>
+
 <% @game.finished_players.each do |player| %>
   <%= "Place: #{player.finishing_place}" %>
   <%= player.full_name %>

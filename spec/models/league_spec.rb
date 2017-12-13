@@ -64,20 +64,6 @@ describe League, type: :model do
       end
     end
 
-    context '#all_possible_players' do
-      let(:league) { create(:league) }
-      let(:admin) { league.creator }
-      let!(:member) do
-        user = create(:user)
-        league.grant_membership(user)
-        user
-      end
-
-      it 'returns all possible players for a league' do
-        expect(league.all_possible_players).to match([admin, member])
-      end
-    end
-
     context '#grant_memberhip' do
       it 'grants membership to a user' do
         new_user = create(:user)

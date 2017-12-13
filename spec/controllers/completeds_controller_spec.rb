@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CompletedsController, type: :controller do
   context 'PATCH#update' do
-    let(:game) { create(:game) }
+    let(:game) { create(:game_with_first_and_second) }
     let(:league) { game.league }
     let(:admin) { league.creator }
     let(:season) { game.season }
