@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Admin of league can toggle completed flag', type: :request do
-  let(:game) { create(:game, completed: false) }
+  let(:game) { create(:game_with_first_and_second, completed: false) }
   let(:league) { game.league }
   let(:admin) { league.creator }
   let(:season) { game.season }
@@ -10,6 +10,7 @@ describe 'Admin of league can toggle completed flag', type: :request do
     league.grant_membership(user)
     user
   end
+  let(:players) { game.players }
 
   context 'as an admin' do
     before do
@@ -26,7 +27,7 @@ describe 'Admin of league can toggle completed flag', type: :request do
       game.complete!
       expect {
         patch "/leagues/#{league.slug}/seasons/#{season.id}/games/#{game.id}/completed"
-      }.to_not change { game.completed }.from(true)
+      }.to_not change { game.reload.completed }.from(true)
     end
   end
 

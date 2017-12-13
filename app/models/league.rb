@@ -20,10 +20,6 @@ class League < ApplicationRecord
     users.merge(UserLeagueRole.admins)
   end
 
-  def all_possible_players
-    admins + members
-  end
-
   def grant_membership(user)
     add_person(user, 0)
   end

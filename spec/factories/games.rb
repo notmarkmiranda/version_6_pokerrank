@@ -5,5 +5,11 @@ FactoryGirl.define do
     completed false
     season
     attendees 10
+
+    factory :game_with_first_and_second do
+      after(:create) do |game|
+				[1, 2].each { |n| create(:player, game: game, finishing_place: n) }
+      end
+    end
   end
 end
