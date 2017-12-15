@@ -1,71 +1,73 @@
 <div class="container py-3">
   <div class="row">
-<div class="col-md-12 mx-auto">
-  <div class="card">
-    <h3 class="card-header mb-4"><%= @league.name %></h3>
-    <div class="card-body">
-      <div class="row">
-        <div class="col">
-          <h4>CURRENT SEASON STATS</h4>
-          <hr>
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <h3 class="card-header mb-4"><%= @league.name %></h3>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col">
+              <h4>CURRENT SEASON STATS</h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4 landing-component text-center">
+              <div class="card stat-card text-center">
+                <div class="card-header stat-title">
+                  SEASON LEADER
+                </div>
+                <div class="card-body">
+                  <h4 class="season_leader_name">Andy Baum</h4>
+                  <h6>Has played in: 12 games</h6>
+                  <h6>Won or placed: 5 games | 45%</h6>
+                  <h6>Score: 30.71</h6>
+                </div>
+                <div class="card-footer text-muted">
+                  <%= link_to "check out all the losers", "#", class: 'league__footer-links' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 landing-component text-center">
+              <div class="card stat-card text-center">
+                <div class="card-header stat-title">
+                  BIGGEST GAME
+                </div>
+                <div class="card-body">
+                  <h4 class="season_leader_name">February 20, 2017</h4>
+                  <h6>Pot Size: $180</h6>
+                  <h6>Number of Players: 11</h6>
+                  <h6>Winner: Mark Miranda</h6>
+                </div>
+                <div class="card-footer text-muted">
+                  <%= link_to "here are the other games", "#", class: 'league__footer-links' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 landing-component text-center">
+              <div class="card stat-card text-center">
+                <div class="card-header stat-title">
+                  SEASON STATS
+                </div>
+                <div class="card-body">
+                  <h4 class="season_leader_name">11 Games</h4>
+                  <h6>Players per game: 8.64</h6>
+                  <h6>Average pot size: $139.09</h6>
+                  <h6>Season Pot Total: $1,350</h6>
+                </div>
+                <div class="card-footer text-muted">
+                  <%= link_to "check out all the losers", "#", class: 'league__footer-links' %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
-
-      <div class="row">
-
-        <div class="col-md-4 landing-component text-center">
-          <div class="card stat-card text-center">
-            <div class="card-header stat-title">
-              SEASON LEADER
-            </div>
-            <div class="card-body">
-              <h4 class="season_leader_name">Andy Baum</h4>
-              <h6>Has played in: 12 games</h6>
-              <h6>Won or placed: 5 games | 45%</h6>
-              <h6>Score: 30.71</h6>
-            </div>
-            <div class="card-footer text-muted">
-              <%= link_to "check out all the losers", "#", class: 'league__footer-links' %>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 landing-component text-center">
-          <div class="card stat-card text-center">
-            <div class="card-header stat-title">
-              BIGGEST GAME
-            </div>
-            <div class="card-body">
-              <h4 class="season_leader_name">February 20, 2017</h4>
-              <h6>Pot Size: $180</h6>
-              <h6>Number of Players: 11</h6>
-              <h6>Winner: Mark Miranda</h6>
-            </div>
-             <div class="card-footer text-muted">
-              <%= link_to "here are the other games", "#", class: 'league__footer-links' %>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 landing-component text-center">
-          <div class="card stat-card text-center">
-            <div class="card-header stat-title">
-              SEASON STATS
-            </div>
-            <div class="card-body">
-              <h4 class="season_leader_name">11 Games</h4>
-              <h6>Players per game: 8.64</h6>
-              <h6>Average pot size: $139.09</h6>
-              <h6>Season Pot Total: $1,350</h6>
-            </div>
-            <div class="card-footer text-muted">
-              <%= link_to "check out all the losers", "#", class: 'league__footer-links' %>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
   </div>
 </div>
