@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <%= user.full_name %>
+  <%= button_to "Invite", {}, disabled: user.is_invited?(@league) %>
+  <%= button_to "Make Admin", {}, disabled: user.is_admin?(@league) %>
+<% end %>

@@ -15,7 +15,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to 'Dashboard', dashboard_path, class: 'dropdown-item nav-link' %>
-              <%= link_to 'New Player', '#', class: 'dropdown-item nav-link' %>
+              <% if @league && @league.id && current_user.admin_for_league?(@league) %>
+                <%= link_to 'New Player', new_league_user_path(@league), class: 'dropdown-item nav-link' %>
+              <% end %>
               <%= link_to 'New League', new_league_path, class: 'dropdown-item nav-link' %>
             </div>
           </li>

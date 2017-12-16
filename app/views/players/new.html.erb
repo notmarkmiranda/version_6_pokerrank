@@ -1,13 +1,16 @@
-<%= form_for [@league, @season, @game, @player] do |f| %>
-  <%= f.label :user_id, "Player Name" %>
-  <%= f.select :user_id, @game.all_possible_players.collect { |u| [u.full_name, u.id] }, { include_blank: true } %>
-  <%= f.label :additional_expense, "Additional Expense" %>
-  <%= f.text_field :additional_expense %>
-  <%= f.label :finishing_place, 'Finishing Place' %>
-  <%= f.text_field :finishing_place %>
+<div class="new-player-form">
+  <%= form_for [@league, @season, @game, @player] do |f| %>
+    <%= f.label :user_id, "Player Name" %>
+    <%= f.select :user_id, @game.all_possible_players.collect { |u| [u.full_name, u.id] }, { include_blank: true } %>
+    <%= link_to "New Player", new_league_user_path(league) %>
+    <%= f.label :additional_expense, "Additional Expense" %>
+    <%= f.text_field :additional_expense %>
+    <%= f.label :finishing_place, 'Finishing Place' %>
+    <%= f.text_field :finishing_place %>
 
-  <%= f.submit "Score!" %>
-<% end %>
+    <%= f.submit "Score!" %>
+  <% end %>
+</div>
 
 <%= button_to "Complete Game", league_season_game_completed_path(@league, @season, @game), method: 'patch' %>
 

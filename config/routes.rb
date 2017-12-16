@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :users, only: [:index, :show, :create, :update], path_names: { show: 'dashboard' }
   resources :leagues, except: [:delete], param: :slug do
+    scope module: :leagues do
+      resources :users, only: [:index, :show, :new, :create]
+    end
     resources :seasons, only: [:show, :create] do
       resources :games, only: [:index, :show, :new, :create, :edit, :update] do
         resource :completed, only: [:update]

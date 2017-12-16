@@ -1,11 +1,28 @@
 module LeagueHelper
   include ApplicationHelper
-  OPTIONS = ['league', 'season', 'game', 'player'].freeze
 
-  OPTIONS.each_with_index do |option, index|
-    define_method("load_#{option}") do
-      OPTIONS[0..index].each { |opt| send(opt) }
-    end
+  def load_league
+    league
+  end
+
+  def load_season
+    load_league
+    season
+  end
+
+  def load_user
+    load_league
+    user
+  end
+
+  def load_game
+    load_season
+    game
+  end
+
+  def load_player
+    load_game
+    player
   end
 
   def verify_admin_for_league
@@ -14,33 +31,37 @@ module LeagueHelper
 
   private
 
-  def league
-    @league ||= League.find(league_param)
-    redirect_to root_path if @league.nil?
-    @league
-  end
-
-  def season
-    @season ||= Season.find(season_param)
-  end
-
   def game
     @game ||= Game.find(game_param)
-  end
-
-  def player
-    @player ||= Player.find(params[:id])
   end
 
   def game_param
     controller_name == 'games' ? params[:id] : params[:game_id]
   end
 
+  def league
+    @league ||= League.find(league_param)
+    redirect_to root_path if @league.nil?
+    @league
+  end
+
   def league_param
     controller_name == 'leagues' ? params[:slug] : params[:league_slug]
   end
 
+  def season
+    @season ||= Season.find(season_param)
+  end
+
   def season_param
     controller_name == 'seasons' ? params[:id] : params[:season_id]
+  end
+
+  def player
+    @player ||= Player.find(params[:id])
+  end
+
+  def user
+    @user ||= User.find(params[:id])
   end
 end
